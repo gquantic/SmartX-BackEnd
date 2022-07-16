@@ -19,5 +19,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::redirect('/home', '/profile')->name('home');
+
+Route::prefix('/profile')->middleware('auth')->group(function () {
+    Route::view('/', 'profile.index');
+});
+
 Route::get('/register/{id}', [\App\Http\Controllers\Auth\RegisterController::class, 'referralSet']);

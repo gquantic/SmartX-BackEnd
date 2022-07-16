@@ -21,66 +21,218 @@
 
     <!-- Custom Css -->
     <link rel="stylesheet" href="/assets/css/style.min.css">
+
+    <!-- Bootstrap Select Css -->
+    <link rel="stylesheet" href="/assets/plugins/bootstrap-select/css/bootstrap-select.css" />
+    <!-- Multi Select Css -->
+    <link rel="stylesheet" href="/assets/plugins/multi-select/css/multi-select.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="/assets/plugins/select2/select2.css" />
 </head>
-<body>
+<body class="theme-cyan">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
+        <!-- Page Loader -->
+        <div class="page-loader-wrapper" id="page-loader">
+            <div class="loader">
+                <div class="m-t-30"><img class="zmdi-hc-spin" src="assets/images/loader.svg" width="48" height="48" alt="Smart X-Investment"></div>
+                <p>Загрузка страницы...</p>
             </div>
-        </nav>
+        </div>
+
+        <!-- Overlay For Sidebars -->
+        <div class="overlay"></div>
+
+        <!-- Left Navbar -->
+        <aside id="leftsidebar" class="sidebar">
+            <div class="navbar-brand">
+                <button class="btn-menu ls-toggle-btn" type="button"><i class="zmdi zmdi-menu"></i></button>
+                <a href="index.php"><img width="150px" src="{{ asset('/template/img/black_flogo.svg') }}" alt="SmartX"><!--span class="m-l-10">Aero</span--></a>
+            </div>
+            <div class="menu">
+                <ul class="list">
+                    <li>
+                        <div class="user-info">
+                            <a class="image" href="profile"><img src="{{ asset('/assets/images/profilde_av.jpg') }}" alt="User"></a>
+                            <div class="detail">
+                                <h4>[{{ \Illuminate\Support\Facades\Auth::id() }}] {{ \Illuminate\Support\Facades\Auth::user()->name }}</h4>
+                                <small>{{ \Illuminate\Support\Facades\Auth::user()->email }}</small>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li><a href="profile"><i class="zmdi zmdi-account"></i><span>Мой профиль</span></a></li>
+
+                    <li><a href="main"><i class="zmdi zmdi-home"></i><span>Главная</span></a></li>
+
+                    <li><a href="offers"><i class="zmdi zmdi-shopping-cart"></i><span>Продукты</span></a></li>
+
+                    <l><a href="portfolio"><i class="zmdi zmdi-file"></i><span>Мои инвестиции</span></a></l>
+
+                    <!--  <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-blogger"></i><span>Статистика</span></a>
+                         <ul class="ml-menu">
+                             <li><a href="conversions-dashboard.php">Конверсии</a></li>
+                             <li><a href="dashboard">Общая статистика</a></li>
+                             <li><a href="offers">Доходы</a></li>
+                         </ul>
+                     </li> -->
+
+                    <!--  <li><a href="dashboard"><i class="zmdi zmdi-view-dashboard"></i><span>Общая статистика</span></a></li> -->
+
+
+                    <li><a href="referals"><i class="zmdi zmdi-accounts"></i><span>Рефералы</span></a></li>
+
+                    <li><a href="financial"><i class="zmdi zmdi-balance-wallet"></i><span>Финансы</span></a></li>
+
+                    <!--li><a href="documentation"><i class="zmdi zmdi-book"></i><span>Полезная информация</span></a></li-->
+
+                    <!--li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-apps"></i><span>Сервисы</span></a>
+                        <ul class="ml-menu">
+                            <li><a href="mail-inbox.php">Почта / Рассылка</a></li>
+                            <li><a href="urls.php">Ссылки</a></li>
+                        </ul>
+                    </li-->
+
+                    <li><a href="/exit.php"><i class="zmdi zmdi-minus-circle"></i><span>Выход</span></a></li><br>
+
+                    <!--li>
+                        <div class="progress-container progress-primary m-t-10">
+                            <span class="progress-badge">CTR</span>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100" style="width: 67%;">
+                                    <span class="progress-value">67%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="progress-container progress-info">
+                            <span class="progress-badge">Принято лидов</span>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="73" aria-valuemin="0" aria-valuemax="100" style="width: 73%;">
+                                    <span class="progress-value">73%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </li-->
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Right Navbar -->
+        <div class="navbar-right">
+            <ul class="navbar-nav">
+                <li class="dropdown">
+                    <a href="javascript:void(0);" class="dropdown-toggle" title="App" data-toggle="dropdown" role="button"><i class="zmdi zmdi-apps"></i></a>
+                    <ul class="dropdown-menu slideUp2">
+                        <li class="header">Быстрая навигация</li>
+                        <li class="body">
+                            <ul class="menu app_sortcut list-unstyled">
+                                <li>
+                                    <a href="/">
+                                        <div class="icon-circle mb-2 bg-pink"><i class="zmdi zmdi-home"></i></div>
+                                        <p class="mb-0">Главная</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="profile">
+                                        <div class="icon-circle mb-2 bg-blue"><i class="zmdi zmdi-account"></i></div>
+                                        <p class="mb-0">Мой профиль</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="offers">
+                                        <div class="icon-circle mb-2 bg-amber"><i class="zmdi zmdi-shopping-cart"></i></div>
+                                        <p class="mb-0">Продукты</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="portfolio">
+                                        <div class="icon-circle mb-2 bg-purple"><i class="zmdi zmdi-case"></i></div>
+                                        <p class="mb-0">Инвестиции</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="referals">
+                                        <div class="icon-circle mb-2 bg-green"><i class="zmdi zmdi-accounts"></i></div>
+                                        <p class="mb-0">Рефералы</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="financial">
+                                        <div class="icon-circle mb-2 bg-purple"><i class="zmdi zmdi-balance-wallet"></i></div>
+                                        <p class="mb-0">Финансы</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:void(0);" class="dropdown-toggle" title="Notifications" data-toggle="dropdown" role="button"><i class="zmdi zmdi-notifications"></i>
+                        <div class="notify"><span class="heartbit"></span><span class="point"></span></div>
+                    </a>
+                    <ul class="dropdown-menu slideUp2">
+                        <li class="header">Уведомления</li>
+                        <li class="body">
+                            <ul class="menu list-unstyled">
+                            </ul>
+                        </li>
+                        <li class="footer"> <a href="javascript:void(0);">Все уведомления</a> </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="zmdi zmdi-balance-wallet"></i>
+                    </a>
+                    <ul class="dropdown-menu slideUp2" style="height: 200px !important;">
+                        <li class="header">Ваш баланс <small class="float-right"><a href="wallet.php">Подробнее</a></small></li>
+                        <li class="body">
+                            <ul class="menu tasks list-unstyled">
+                                <li>
+                                    <div class="progress-container progress-primary">
+                                        <span class="progress-badge">Готовы к выводу</span>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+                                                <span class="progress-value" style="font-size: 13px;"><?#echo $userData['balance'] + $userData['referal_balance'];?>₽</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="progress-container progress-primary">
+                                        <span class="progress-badge">Холд</span>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+                                                <span class="progress-value" style="font-size: 13px;"><?#echo $userData['hold'] + $userData['referal_hold'];?>₽</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="javascript:void(0);" class="js-right-sidebar" title="Setting"><i class="zmdi zmdi-settings zmdi-hc-spin"></i></a></li>
+                <li>
+                    <a class="mega-menu" title="Sign Out" href="{{ route('logout') }}"
+                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <i class="zmdi zmdi-power"></i>
+                    </a>
+                </li>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </ul>
+        </div>
 
         <main class="py-4">
             @yield('content')
         </main>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) {
+            setTimeout(function () {
+                document.getElementById('page-loader').remove();
+            }, 300)
+        });
+    </script>
 </body>
 </html>
