@@ -21,6 +21,11 @@ class CreateUsersTable extends Migration
             $table->integer('balance')->default(0);
             $table->integer('referral_balance')->default(0);
 
+            $table->unsignedBigInteger('referral')->nullable();
+            $table->foreign('referral')->references('id')->on('users');
+
+            $table->string('phone')->nullable();
+
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
