@@ -34,7 +34,7 @@
         <!-- Page Loader -->
         <div class="page-loader-wrapper" id="page-loader">
             <div class="loader">
-                <div class="m-t-30"><img class="zmdi-hc-spin" src="assets/images/loader.svg" width="48" height="48" alt="Smart X-Investment"></div>
+                <div class="m-t-30"><img class="zmdi-hc-spin" src="{{ asset('assets/images/loader.svg') }}" width="48" height="48" alt="Smart X-Investment"></div>
                 <p>Загрузка страницы...</p>
             </div>
         </div>
@@ -46,13 +46,13 @@
         <aside id="leftsidebar" class="sidebar">
             <div class="navbar-brand">
                 <button class="btn-menu ls-toggle-btn" type="button"><i class="zmdi zmdi-menu"></i></button>
-                <a href="index.php"><img width="150px" src="{{ asset('/template/img/black_flogo.svg') }}" alt="SmartX"><!--span class="m-l-10">Aero</span--></a>
+                <a href="{{ route('home') }}"><img width="150px" src="{{ asset('/template/img/black_flogo.svg') }}" alt="SmartX"><!--span class="m-l-10">Aero</span--></a>
             </div>
             <div class="menu">
                 <ul class="list">
                     <li>
                         <div class="user-info">
-                            <a class="image" href="profile"><img src="{{ asset('/assets/images/profilde_av.jpg') }}" alt="User"></a>
+                            <a class="image" href="{{ route('profile') }}"><img src="{{ asset('/assets/images/profilde_av.jpg') }}" alt="User"></a>
                             <div class="detail">
                                 <h4>[{{ \Illuminate\Support\Facades\Auth::id() }}] {{ \Illuminate\Support\Facades\Auth::user()->name }}</h4>
                                 <small>{{ \Illuminate\Support\Facades\Auth::user()->email }}</small>
@@ -60,13 +60,13 @@
                         </div>
                     </li>
 
-                    <li><a href="profile"><i class="zmdi zmdi-account"></i><span>Мой профиль</span></a></li>
+                    <li><a href="{{ route('profile') }}"><i class="zmdi zmdi-account"></i><span>Мой профиль</span></a></li>
 
-                    <li><a href="main"><i class="zmdi zmdi-home"></i><span>Главная</span></a></li>
+                    <li><a href="{{ route('home') }}"><i class="zmdi zmdi-home"></i><span>Главная</span></a></li>
 
-                    <li><a href="offers"><i class="zmdi zmdi-shopping-cart"></i><span>Продукты</span></a></li>
+                    <li><a href="{{ route('products') }}"><i class="zmdi zmdi-shopping-cart"></i><span>Продукты</span></a></li>
 
-                    <l><a href="portfolio"><i class="zmdi zmdi-file"></i><span>Мои инвестиции</span></a></l>
+                    <l><a href="{{ route('invests') }}"><i class="zmdi zmdi-file"></i><span>Мои инвестиции</span></a></l>
 
                     <!--  <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-blogger"></i><span>Статистика</span></a>
                          <ul class="ml-menu">
@@ -79,9 +79,9 @@
                     <!--  <li><a href="dashboard"><i class="zmdi zmdi-view-dashboard"></i><span>Общая статистика</span></a></li> -->
 
 
-                    <li><a href="referals"><i class="zmdi zmdi-accounts"></i><span>Рефералы</span></a></li>
+                    <li><a href="{{ route('referrals') }}"><i class="zmdi zmdi-accounts"></i><span>Рефералы</span></a></li>
 
-                    <li><a href="financial"><i class="zmdi zmdi-balance-wallet"></i><span>Финансы</span></a></li>
+                    <li><a href="{{ route('finances') }}"><i class="zmdi zmdi-balance-wallet"></i><span>Финансы</span></a></li>
 
                     <!--li><a href="documentation"><i class="zmdi zmdi-book"></i><span>Полезная информация</span></a></li-->
 
@@ -92,7 +92,8 @@
                         </ul>
                     </li-->
 
-                    <li><a href="/exit.php"><i class="zmdi zmdi-minus-circle"></i><span>Выход</span></a></li><br>
+                    <li><a href="{{ route('logout') }}"
+                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="zmdi zmdi-minus-circle"></i><span>Выход</span></a></li><br>
 
                     <!--li>
                         <div class="progress-container progress-primary m-t-10">
@@ -223,7 +224,26 @@
         </div>
 
         <main class="py-4">
-            @yield('content')
+            @yield('before-content')
+            <section class="content">
+                <div class="block-header">
+                    <div class="row">
+                        <div class="col-lg-7 col-md-6 col-sm-12">
+                            <h2>Главная</h2>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="zmdi zmdi-home"></i> Smart X-Investment</a></li>
+                                <li class="breadcrumb-item active">Главная</li>
+                            </ul>
+                            <button class="btn btn-primary btn-icon mobile_menu" type="button"><i class="zmdi zmdi-sort-amount-desc"></i></button>
+                        </div>
+                        <div class="col-lg-5 col-md-6 col-sm-12 d-flex justify-content-end">
+                            <button class="btn btn-primary btn-icon float-right right_icon_toggle_btn" type="button"><i class="zmdi zmdi-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+                @yield('content')
+            </section>
+            @yield('after-content')
         </main>
     </div>
 

@@ -19,10 +19,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::redirect('/home', '/profile')->name('home');
+Route::redirect('/home', '/profile');
 
 Route::prefix('/profile')->middleware('auth')->group(function () {
-    Route::view('/', 'profile.index');
+    Route::view('/', 'profile.index')->name('home');
+    Route::view('/my', 'profile.index')->name('profile');
+    Route::view('/products', 'profile.index')->name('products');
+    Route::view('/invests', 'profile.index')->name('invests');
+    Route::view('/referrals', 'profile.index')->name('referrals');
+    Route::view('/finances', 'profile.index')->name('finances');
 });
 
 Route::get('/register/{id}', [\App\Http\Controllers\Auth\RegisterController::class, 'referralSet']);
