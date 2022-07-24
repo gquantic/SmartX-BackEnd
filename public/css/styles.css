@@ -1,1 +1,6 @@
-
+@media (max-width: 550px) {
+  section.content {
+    width: 95% !important;
+    margin: 0 auto !important;
+  }
+}

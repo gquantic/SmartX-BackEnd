@@ -15,7 +15,7 @@
                 <div class="card widget_2 traffic">
                     <div class="body">
                         <h6>Финансовый счёт</h6>
-                        <h2>{{ \Illuminate\Support\Facades\Auth::user()->balance }}</h2>
+                        <h2>{{ \Illuminate\Support\Facades\Auth::user()->balance }} руб.</h2>
                         <small>Общая сумма на Вашем счете</small>
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                 <div class="card widget_2 sales">
                     <div class="body">
                         <h6>Активные инвестиции</h6>
-                        <h2>0</h2>
+                        <h2>0 руб.</h2>
                         <small>Актуальная сумма, которая инвестирована в проекты</small>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                 <div class="card widget_2 sales">
                     <div class="body">
                         <h6>Заработано на Smart X-Investment</h6>
-                        <h2>0</h2>
+                        <h2>0 руб.</h2>
                         <small>Общая сумма, полученная от инвестиций</small>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                 <div class="card widget_2 sales">
                     <div class="body">
                         <h6>Партнёрская программа</h6>
-                        <h2>0</h2>
+                        <h2>0 руб.</h2>
                         <small>Общая сумма средств, заработанных в партнерстве Smart X-Invesment</small>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                 <div class="card widget_2 sales">
                     <div class="body">
                         <h6>Всего выведено</h6>
-                        <h2>0</h2>
+                        <h2>0 руб.</h2>
                         <small>Общая сумма выведенных Вами средств</small>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                 <div class="card widget_2 sales">
                     <div class="body">
                         <h6>Общая прибыль</h6>
-                        <h2>0</h2>
+                        <h2>0 руб.</h2>
                         <small>Доход в совокупности, полученный от инвестиций и с партнёрской программы за весь период</small>
                     </div>
                 </div>

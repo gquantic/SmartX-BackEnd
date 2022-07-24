@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'SmartX') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -18,6 +18,12 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+
+    <script
+        src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous"></script>
 
     <!-- Custom Css -->
     <link rel="stylesheet" href="/assets/css/style.min.css">
@@ -64,9 +70,11 @@
 
                     <li><a href="{{ route('home') }}"><i class="zmdi zmdi-home"></i><span>Главная</span></a></li>
 
-                    <li><a href="{{ route('products') }}"><i class="zmdi zmdi-shopping-cart"></i><span>Продукты</span></a></li>
+                    <li><a href="{{ route('products.index') }}"><i class="zmdi zmdi-shopping-cart"></i><span>Продукты</span></a></li>
 
-                    <l><a href="{{ route('invests') }}"><i class="zmdi zmdi-file"></i><span>Мои инвестиции</span></a></l>
+                    <li><a href="{{ route('parts.products') }}"><i class="zmdi zmdi-view-dashboard"></i><span>Мои доли</span></a></li>
+
+                    <l><a href="{{ route('invests.index') }}"><i class="zmdi zmdi-file"></i><span>История инвестиций</span></a></l>
 
                     <!--  <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-blogger"></i><span>Статистика</span></a>
                          <ul class="ml-menu">
@@ -247,11 +255,38 @@
         </main>
     </div>
 
+    <script src="{{ asset('template/js/bundle/libscript.bundle.js') }}"></script>
+    <script src="{{ asset('template/js/bundle/vendorscripts.bundle.js') }}"></script>
+    <script src="{{ asset('assets/bundles/jvectormap.bundle.js') }}"></script>
+    <script src="{{ asset('assets/bundles/c3.bundle.js') }}"></script>
+    <script src="{{ asset('template/js/bundle/mainscript.bundle.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/index.js') }}"></script>
+    <script src="{{ asset('assets/plugins/jquery-datatable/buttons/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/tables/jquery-datatable.js') }}"></script>
+
+    <style>
+        section.content {
+            /*transform: translateY(100px);*/
+            opacity: 0;
+            transition: .3s;
+        }
+    </style>
     <script>
         document.addEventListener("DOMContentLoaded", function(event) {
             setTimeout(function () {
                 document.getElementById('page-loader').remove();
             }, 300)
+
+            $('.mobile_menu').on('click', function() {
+                $('#leftsidebar').toggleClass('open');
+            });
+
+            setTimeout(function () {
+                $('section.content').css({
+                    'transform': 'translateY(0px)',
+                    'opacity': '1'
+                });
+            }, 500);
         });
     </script>
 </body>
