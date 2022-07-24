@@ -24,10 +24,18 @@ Route::redirect('/home', '/profile');
 Route::prefix('/profile')->middleware('auth')->group(function () {
     Route::view('/', 'profile.index')->name('home');
     Route::view('/my', 'profile.index')->name('profile');
-    Route::view('/products', 'profile.index')->name('products');
-    Route::view('/invests', 'profile.index')->name('invests');
     Route::view('/referrals', 'profile.index')->name('referrals');
     Route::view('/finances', 'profile.index')->name('finances');
+
+    Route::get('/invest/{id}', [\App\Http\Controllers\InvestController::class, 'showInvest'])->name('invest');
+    Route::post('/invest/{id}', [\App\Http\Controllers\InvestController::class, 'makeInvest'])->name('make-invest');
+
+    Route::resources([
+        '/products' => \App\Http\Controllers\ProductsController::class,
+        '/invests' => \App\Http\Controllers\PartController::class,
+    ]);
+
+    Route::get('/parts/products', [\App\Http\Controllers\PartController::class, 'products'])->name('parts.products');
 });
 
 Route::get('/register/{id}', [\App\Http\Controllers\Auth\RegisterController::class, 'referralSet']);
