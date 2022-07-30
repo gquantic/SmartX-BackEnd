@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Session\Store;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class ProductsController extends Controller
 {
@@ -24,18 +28,39 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.products.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $filename = $data['img']->getClientOriginalName();
+
+        // Сохраняем оригинальную картинку
+        $path = $request->file('img')->store('offers', 'public');
+//        Storage::setVisibility($path, 'public');
+
+        // Сохраняем новость в БД
+        $data['img'] = $filename;
+
+        Product::create([
+            'image' => $path,
+            'name' => $data['name'],
+            'description' => $data['description'],
+            'full_description' => $data['full_description'],
+            'award' => $data['award'],
+            'need_funds' => $data['need_funds'],
+            'shares' => $data['shares'],
+            'end_date' => $data['end_date'],
+        ]);
+
+        return Redirect::route('products.index');
     }
 
     /**

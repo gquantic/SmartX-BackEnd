@@ -21,6 +21,15 @@ Auth::routes();
 
 Route::redirect('/home', '/profile');
 
+Route::prefix('/admin')->middleware('auth')->middleware('admin')->group(function () {
+    Route::redirect('/', 'users/')->name('home');
+
+    Route::resources([
+        'users' => \App\Http\Controllers\Admin\UsersController::class,
+        'products-admin' => \App\Http\Controllers\ProductsController::class,
+    ]);
+});
+
 Route::prefix('/profile')->middleware('auth')->group(function () {
     Route::view('/', 'profile.index')->name('home');
     Route::view('/my', 'profile.index')->name('profile');

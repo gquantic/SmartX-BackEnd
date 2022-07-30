@@ -3,6 +3,12 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
+            @if(\Illuminate\Support\Facades\Auth::user()->is_admin)
+                <div class="col-md-12 d-flex justify-content-start mb-3">
+                    <a href="{{ route('products.create') }}" class="btn btn-primary">Добавить продукт</a>
+                </div>
+            @endif
+
             @foreach($products as $product)
                 <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
                     <div class="card">
@@ -10,7 +16,7 @@
                             <!--span class="label onsale">Популярный</span-->
                             <div class="text-center" style="height:250px;display:flex;align-items: top;text-align: center;justify-content: center;">
                                 <div style="height:100%;width:100%;background-size:auto;background-position: center center;display: flex;justify-content: center;align-items: center;">
-                                    <img src="{{ $product->image }}" style="max-width: 100%; max-height:100%;" alt="">
+                                    <img src="{{ asset('/storage/' . $product->image) }}" style="max-width: 100%; max-height:100%;" alt="">
                                 </div>
                             </div>
                             <div class="product_details">
@@ -27,6 +33,23 @@
                     </div>
                 </div>
             @endforeach
+
+                @if(\Illuminate\Support\Facades\Auth::user()->is_admin)
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                        <a href="{{ route('products.create') }}">
+                            <div class="card">
+                                <div class="body product_item text-center" style="/*min-height: 326px;*/">
+                                    <!--span class="label onsale">Популярный</span-->
+                                    <div class="text-center" style="height:250px;display:flex;align-items: top;text-align: center;justify-content: center;">
+                                        <div style="height:100%;width:100%;background-size:auto;background-position: center center;display: flex;justify-content: center;align-items: center;">
+                                            <h2 class="mb-0 mt-0" style="user-select: none;">Новый продукт</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                @endif
         </div>
     </div>
 @endsection
