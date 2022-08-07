@@ -31,13 +31,14 @@ Route::prefix('/admin')->middleware('auth')->middleware('admin')->group(function
 });
 
 Route::prefix('/profile')->middleware('auth')->group(function () {
-    Route::view('/', 'profile.index')->name('home');
+    Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home');
+
     Route::view('/my', 'profile.index')->name('profile');
     Route::view('/referrals', 'profile.index')->name('referrals');
     Route::view('/finances', 'profile.index')->name('finances');
 
-    Route::get('/invest/{id}', [\App\Http\Controllers\InvestController::class, 'showInvest'])->name('invest');
-    Route::post('/invest/{id}', [\App\Http\Controllers\InvestController::class, 'makeInvest'])->name('make-invest');
+    Route::get('/invest/{id}', 'App\Http\Controllers\InvestController@showInvest')->name('invest');
+    Route::post('/invest/{id}', 'App\Http\Controllers\InvestController@makeInvest')->name('make-invest');
 
     Route::resources([
         '/products' => \App\Http\Controllers\ProductsController::class,
