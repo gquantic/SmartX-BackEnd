@@ -59,7 +59,7 @@ class ReferralsController extends Controller
             return false;
 
         $conditions = $this->branchesConditions[$branch];
-        if ($this->checkConditionsRealized($referral->id, $conditions)) {
+        if ($this->checkConditionsRealized($referral->id, $conditions, $branch)) {
             if ($this->testMode) {
                 echo "<h1>Condition realized for branch $branch!</h1> <hr>";
                 echo "<hr>";
@@ -77,8 +77,11 @@ class ReferralsController extends Controller
      * @param $conditions
      * @return bool
      */
-    public function checkConditionsRealized($user, $conditions)
+    public function checkConditionsRealized($user, $conditions, $branch)
     {
+        if ($branch == 1) $needInvestAmount = 15000;
+        else $needInvestAmount = 50000;
+
         $referrals = User::where('referral', $user)->get();
 
         $allInvestsAmount = 0;
@@ -107,7 +110,7 @@ class ReferralsController extends Controller
 //        dd($referralInvestAmount);
 
         // Проверяем выполнение условий
-        if ($conditions[2] <= $allInvestsAmount && $conditions[1] <= count($referrals) && intval($referralInvestAmount) >= 15000)
+        if ($conditions[2] <= $allInvestsAmount && $conditions[1] <= count($referrals) && intval($referralInvestAmount) >= $needInvestAmount)
             return true;
         else
             return false;
