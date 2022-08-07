@@ -32,7 +32,7 @@ class InvestController extends Controller
         $request->validate([
             'quantity' => 'required|integer',
             'address' => 'required|string|max:100',
-            'comment' => 'string|max:500',
+            'comment' => 'required|string|max:500',
         ]);
 
         // Переменные для упрощения кода
