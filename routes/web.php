@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +35,11 @@ Route::prefix('/profile')->middleware('auth')->group(function () {
     Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home');
 
     Route::view('/my', 'profile.index')->name('profile');
-    Route::view('/referrals', 'profile.index')->name('referrals');
+
+    Route::get('/referrals', function () {
+        return view('profile.referrals', ['referrals' => \App\Models\User::find(Auth::id())->referrals]);
+    })->name('referrals');
+
     Route::view('/finances', 'profile.index')->name('finances');
 
     Route::get('/invest/{id}', 'App\Http\Controllers\InvestController@showInvest')->name('invest');
