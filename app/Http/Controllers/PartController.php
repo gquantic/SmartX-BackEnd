@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Part;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PartController extends Controller
 {
@@ -15,7 +16,7 @@ class PartController extends Controller
      */
     public function index()
     {
-        return view('profile.parts.index', ['parts' => Part::all()]);
+        return view('profile.parts.index', ['parts' => Part::where('user_id', Auth::id())->get()]);
     }
 
     /**
