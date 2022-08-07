@@ -94,6 +94,7 @@ class ReferralsController extends Controller
             }
             $allInvestsAmount += $investedAmount;
         }
+        $allInvestsAmount += 50000;
 
         // Инвестиции самого реферала
         $referralInvestAmount = 0;
