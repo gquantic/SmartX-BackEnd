@@ -107,7 +107,7 @@ class ReferralsController extends Controller
 //        dd($referralInvestAmount);
 
         // Проверяем выполнение условий
-        if ($conditions[2] <= $allInvestsAmount && $conditions[1] <= count($referrals) && intval($referralInvestAmount) >= 50000)
+        if ($conditions[2] <= $allInvestsAmount && $conditions[1] <= count($referrals) && intval($referralInvestAmount) >= 15000)
             return true;
         else
             return false;
