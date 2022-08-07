@@ -27,7 +27,7 @@
                         <div class="row">
                             <div class="col-xl-3 col-lg-4 col-md-12">
                                 <div class="preview preview-pic tab-content">
-                                    <div class="tab-pane active" id="product_1"><img src="{{ $product->image }}" class="img-fluid" alt=""></div>
+                                    <div class="tab-pane active" id="product_1"><img src="{{ asset('/storage/' . $product->image) }}" class="img-fluid" alt=""></div>
                                 </div>
                             </div>
                             <div class="col-xl-9 col-lg-8 col-md-12">
