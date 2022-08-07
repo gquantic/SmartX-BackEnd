@@ -1,6 +1,6 @@
-{{--@extends('layouts.app')--}}
+@extends('layouts.app')
 
-{{--@section('content')--}}
+@section('content')
     <div class="container-fluid">
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12">
@@ -9,7 +9,7 @@
                         <h6>Ваша реферальная ссылка</h6>
                         <div class="d-flex justify-content-start align-items-center">
                             <input type="text" class="form-control bg-white text-black" style="border: 2px solid #46c7a8;margin-right: 15px;"
-{{--                                   value="{{ config('app.url') }}/register/{{ \Illuminate\Support\Facades\Auth::id() }}" id="ref_link" readonly>--}}
+                                   value="{{ config('app.url') }}/register/{{ \Illuminate\Support\Facades\Auth::id() }}" id="ref_link" readonly>
                             <button class="btn ml-5" style="background: #46c7a8;color:#fff;" onclick="copyRef()">Скопировать</button>
                         </div>
                     </div>
@@ -19,7 +19,7 @@
                 <div class="card widget_2 traffic">
                     <div class="body">
                         <h6>Финансовый счёт</h6>
-{{--                        <h2 class="amount">{{ \Illuminate\Support\Facades\Auth::user()->balance }} руб.</h2>--}}
+                        <h2 class="amount">{{ \Illuminate\Support\Facades\Auth::user()->balance }} руб.</h2>
                         <small>Общая сумма на Вашем счете</small>
                     </div>
                 </div>
