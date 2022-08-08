@@ -24,8 +24,8 @@ class CreatePartsTable extends Migration
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products');
 
-            $table->text('address');
-            $table->longText('comment');
+            $table->text('address')->nullable();
+            $table->longText('comment')->nullable();
 
             $table->timestamps();
         });
