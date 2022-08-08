@@ -28,6 +28,9 @@
                             </div>
                             <div class="action">
                                 <a href="{!! route('products.show', $product->id) !!}" class="btn btn-primary waves-effect">Подробнее</a>
+                                @if(\Illuminate\Support\Facades\Auth::user()->is_admin)
+                                    <a href="{!! route('products-admin.edit', $product->id) !!}" class="btn btn-primary waves-effect">Редактировать</a>
+                                @endif
                             </div>
                         </div>
                     </div>

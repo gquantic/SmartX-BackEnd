@@ -64,9 +64,21 @@
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="card widget_2 sales">
                     <div class="body">
-                        <h6>Общая прибыль</h6>
+
+                        <div class="d-flex justify-content-between">
+                            <h6>Общая прибыль</h6>
+                            <div class="d-flex">
+                                <div class="mr-3" style="margin-right: 10px;">
+                                    <a href="{{ route('finances') }}" class="">Перевести на финансовый счёт</a>
+                                </div>
+                                <div class="ml-1">
+                                    <a href="{{ route('finances') }}" class="ml-1">Вывести</a>
+                                </div>
+                            </div>
+                        </div>
                         <h2 class="amount">{{ \Illuminate\Support\Facades\Auth::user()->referral_balance }} руб.</h2>
                         <small>Доход в совокупности, полученный от инвестиций и с партнёрской программы за весь период</small>
+                        <br>
                     </div>
                 </div>
             </div>
