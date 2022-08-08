@@ -91,7 +91,15 @@
                                 <h6 class="text-center mb-0">Участники команды не указаны</h6>
                             </div>
                             <div class="tab-pane" id="files">
-                                <h6 class="text-center mb-0">Нет дополнительных файлов</h6>
+                                @php
+                                    $files = \App\Models\File::where('product_id', $product->id)->get();
+                                @endphp
+
+                                @foreach($files as $file)
+                                    <div class="p-1">
+                                        <a target="_blank" href="{{ asset('/storage/' . $file->path) }}">{{ $file->name }}</a>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>

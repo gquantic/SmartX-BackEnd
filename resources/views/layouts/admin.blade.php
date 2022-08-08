@@ -70,7 +70,9 @@
 
                     <li><a href="{{ route('home') }}"><i class="zmdi zmdi-home"></i><span>Главная</span></a></li>
 
-                    <li><a href="{{ route('products-admin.index') }}"><i class="zmdi zmdi-shopping-cart"></i><span>Продукты</span></a></li>
+                    <li><a href="{{ route('products-admin.index') }}"><i class="zmdi zmdi-shopping-cart"></i><span>Проекты</span></a></li>
+
+                    <li><a href="{{ route('files.index') }}"><i class="zmdi zmdi-file"></i><span>Файлы</span></a></li>
 
                     <li><a href="{{ route('parts.products') }}"><i class="zmdi zmdi-view-dashboard"></i><span>Мои доли</span></a></li>
 

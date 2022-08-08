@@ -28,6 +28,7 @@ Route::prefix('/admin')->middleware('auth')->middleware('admin')->group(function
     Route::resources([
         'users' => \App\Http\Controllers\Admin\UsersController::class,
         'products-admin' => \App\Http\Controllers\ProductsController::class,
+        'files' => \App\Http\Controllers\FilesController::class,
     ]);
 });
 
@@ -40,7 +41,8 @@ Route::prefix('/profile')->middleware('auth')->group(function () {
         return view('profile.referrals', ['referrals' => \App\Models\User::find(Auth::id())->referrals]);
     })->name('referrals');
 
-    Route::view('/finances', 'profile.index')->name('finances');
+    Route::view('/finances', 'profile.finances')->name('finances');
+    Route::post('/finances', 'App\Http\Controllers\FinanceController@post')->name('finances-send');
 
     Route::get('/invest/{id}', 'App\Http\Controllers\InvestController@showInvest')->name('invest');
     Route::post('/invest/{id}', 'App\Http\Controllers\InvestController@makeInvest')->name('make-invest');

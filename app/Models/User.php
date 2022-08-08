@@ -24,6 +24,8 @@ class User extends Authenticatable
         'name',
         'email',
         'phone',
+        'balance',
+        'referral_balance',
         'referral',
         'password',
     ];
