@@ -35,7 +35,7 @@ Route::prefix('/admin')->middleware('auth')->middleware('admin')->group(function
 Route::prefix('/profile')->middleware('auth')->group(function () {
     Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home');
 
-    Route::view('/my', 'profile.index')->name('profile');
+    Route::view('/my', 'profile.my')->name('profile');
 
     Route::get('/referrals', function () {
         return view('profile.referrals', ['referrals' => \App\Models\User::find(Auth::id())->referrals]);
