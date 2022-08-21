@@ -16,7 +16,9 @@
                 $investedAmount += $price;
             }
     @endphp
-           @if($errors->any())
+           
+    <div class="container-fluid">
+        @if($errors->any())
             <div class="row mt-2">
                 <div class="col-md-12">
                     <div class="alert alert-danger">
@@ -34,7 +36,6 @@
                 </div>
             </div>
         @endif
-    <div class="container-fluid">
         <div class="row">
             <div class="col-lg-4 col-md-12">
                 <div class="card">
@@ -99,7 +100,9 @@
                                         <option value="Whatsapp">Whatsapp</option>
                                         <option value="Vk">Vk</option>
                                       </select>
+                                      <span class="text-muted">По данному контакту с вами свяжется менеджер.</span>
                                 </div>
+                                
                                 <div class="col">
                                     <label for="">Контакт</label>
                                     <input type="text" name="communication_contact" class="form-control">
@@ -107,14 +110,14 @@
                               </div>
                             
                             
-                            <input type="submit" class="btn btn-primary mt-3">
+                            <input type="submit" class="btn btn-primary mt-3" value="Оставить заявку">
                         </form>   
                     </div>
                 </div>
             </div>
 
             <div class="col-lg-12 col-md-12">
-                <div class="car">
+                <div class="card">
                     <div class="body">
                         <b>История транзакции</b>
                         <table class="table">
