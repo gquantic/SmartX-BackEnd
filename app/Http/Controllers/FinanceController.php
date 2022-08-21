@@ -55,7 +55,6 @@ class FinanceController extends Controller
         $transaction->status = 'NEW';
         
         $transaction->save();
-        return redirect()->route('finances');
-        dd($validated);
+        return Redirect::route('finances')->with(['success' => 'Заявка отправлена!']);
     }
 }
