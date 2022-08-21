@@ -16,7 +16,7 @@
                 $investedAmount += $price;
             }
     @endphp
-
+ 
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-4 col-md-12">
@@ -59,6 +59,71 @@
                             </div>
                             <input type="submit" class="btn btn-primary mt-3">
                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="body">
+                        <b>Пополнить счет</b>
+                        <form method="post" action="{{ route('add-deposit') }}">
+                            @csrf
+                            <div class="form-group mt-2">
+                                <label for="">Сумма</label>
+                                <input type="number" name="amount" class="form-control">
+                            </div>
+
+                            <div class="row g-3 mt-2">
+                                <div class="col">
+                                    <label for="">Сумма</label>
+                                    <select class="w-100" name="communication_method" aria-label="Default select example">
+                                        <option selected>Способ связи</option>
+                                        <option value="Whatsapp">Whatsapp</option>
+                                        <option value="Telegram">Telegram</option>
+                                        <option value="Vk">Vk</option>
+                                      </select>
+                                </div>
+                                <div class="col">
+                                    <label for="">Сумма</label>
+                                    <input type="text" name="communication_contact" class="form-control" placeholder="ссылка">
+                                </div>
+                              </div>
+                            
+                            
+                            <input type="submit" class="btn btn-primary mt-3">
+                        </form>
+
+                        <div class="col-lg-12 col-md-12">
+                            <div class="body">
+                                <b>История транзакции</b>
+                                <table class="table">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Тип</th>
+                                        <th scope="col">Сумма</th>
+                                        <th scope="col">Статус</th>
+                                        <th scope="col">Дата</th>
+                                      </tr>
+                                    </thead>
+                                    @foreach($transactions as $transaction)
+                                    
+                                        <tbody>
+                                            <tr>
+                                            <th scope="row">1</th>
+                                            <td>{{ $transaction->type }}</td>
+                                            <td>{{ $transaction->amount }}</td>
+                                            <td>{{ $transaction->status }}</td>
+                                            <td>{{ $transaction->updated_at }}</td>
+                                            </tr>
+                                        </tbody>
+                                    @endforeach
+                                  </table>
+                            </div>
+                        </div>
+
+                        
                     </div>
                 </div>
             </div>

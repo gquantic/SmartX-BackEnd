@@ -15,12 +15,12 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-
-            // Тип транзакции
-            // Способ связи
-            // Контакт
-            // Сумма
-            // Статус
+            $table->integer('user_id')->unsigned()->index();
+            $table->string('type');
+            $table->string('communication_method');
+            $table->string('communication_contact');
+            $table->bigInteger('amount');
+            $table->string('status');
 
             $table->timestamps();
         });

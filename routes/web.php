@@ -41,8 +41,10 @@ Route::prefix('/profile')->middleware('auth')->group(function () {
         return view('profile.referrals', ['referrals' => \App\Models\User::find(Auth::id())->referrals]);
     })->name('referrals');
 
-    Route::view('/finances', 'profile.finances')->name('finances');
+    //Route::view('/finances', 'profile.finances')->name('finances');
+    Route::get('/finances', 'App\Http\Controllers\FinanceController@index')->name('finances');
     Route::post('/finances', 'App\Http\Controllers\FinanceController@post')->name('finances-send');
+    Route::post('/deposit', 'App\Http\Controllers\FinanceController@addDeposit')->name('add-deposit');
 
     Route::get('/invest/{id}', 'App\Http\Controllers\InvestController@showInvest')->name('invest');
     Route::post('/invest/{id}', 'App\Http\Controllers\InvestController@makeInvest')->name('make-invest');
