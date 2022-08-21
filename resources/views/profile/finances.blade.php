@@ -17,23 +17,23 @@
             }
     @endphp
            @if($errors->any())
-           <div class="row mt-2">
-               <div class="col-md-12">
-                   <div class="alert alert-danger">
-                       {{ $errors->first() }}
-                   </div>
-               </div>
-           </div>
-       @endif
-       @if(\Session::has('success'))
-           <div class="row mb-1">
-               <div class="col-md-12">
-                   <div class="alert alert-success">
-                       {!! \Session::get('success') !!}
-                   </div>
-               </div>
-           </div>
-       @endif
+            <div class="row mt-2">
+                <div class="col-md-12">
+                    <div class="alert alert-danger">
+                        {{ $errors->first() }}
+                    </div>
+                </div>
+            </div>
+        @endif
+        @if(\Session::has('success'))
+            <div class="row mb-1">
+                <div class="col-md-12">
+                    <div class="alert alert-success">
+                        {!! \Session::get('success') !!}
+                    </div>
+                </div>
+            </div>
+        @endif
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-4 col-md-12">

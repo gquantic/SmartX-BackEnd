@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Controller\Admin\FinancesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,12 +25,16 @@ Route::redirect('/home', '/profile');
 Route::prefix('/admin')->middleware('auth')->middleware('admin')->group(function () {
     Route::redirect('/', 'users/')->name('home');
 
+    //Route::get('/finances', '\App\Http\Controller\Admin\FinancesController@index')->name('finances');
+    //Route::get('/finances', [UsersController::class, 'index'])->name('finances');
+
     Route::resources([
         'users' => \App\Http\Controllers\Admin\UsersController::class,
         'products-admin' => \App\Http\Controllers\ProductsController::class,
         'files' => \App\Http\Controllers\FilesController::class,
+        'finances' => \App\Http\Controllers\Admin\FinancesController::class,
     ]);
-    
+
 });
 
 Route::prefix('/profile')->middleware('auth')->group(function () {
