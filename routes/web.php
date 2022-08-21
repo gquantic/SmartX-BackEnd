@@ -30,6 +30,7 @@ Route::prefix('/admin')->middleware('auth')->middleware('admin')->group(function
         'products-admin' => \App\Http\Controllers\ProductsController::class,
         'files' => \App\Http\Controllers\FilesController::class,
     ]);
+    
 });
 
 Route::prefix('/profile')->middleware('auth')->group(function () {
