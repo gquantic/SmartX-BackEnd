@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\File;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Redirect;
 
 class FilesController extends Controller
 {
@@ -46,7 +48,7 @@ class FilesController extends Controller
             'type' => 'file',
         ]);
 
-        return redirect()->route('files.index');
+        return redirect()->route('files.index')->with(['success' => 'Файл успешно добавлен!']);
     }
 
     /**
@@ -68,7 +70,7 @@ class FilesController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.files.edit', compact('id'));
     }
 
     /**
@@ -80,7 +82,17 @@ class FilesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $file = File::find($id);
+        $old_file = $file['path'];
+
+        // Сохраняем файл
+        $path = $request->file('file')->store('files', 'public');
+        $file->path = $path;
+        Storage::delete('public/' . $old_file);
+        $file->save();
+
+        return Redirect::route('files.index')->with(['success' => 'Файл успешно изменен!']);
     }
 
     /**
@@ -91,6 +103,9 @@ class FilesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $file = File::find($id);
+        $file->delete();
+        Storage::delete('public/' . $file['path']);
+        return Redirect::route('files.index')->with(['success' => 'Файл успешно удален!']);
     }
 }
