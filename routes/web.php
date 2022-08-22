@@ -63,3 +63,4 @@ Route::prefix('/profile')->middleware('auth')->group(function () {
 });
 
 Route::get('/register/{id}', [\App\Http\Controllers\Auth\RegisterController::class, 'referralSet']);
+
