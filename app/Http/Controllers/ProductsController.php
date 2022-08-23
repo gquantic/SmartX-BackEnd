@@ -19,7 +19,7 @@ class ProductsController extends Controller
     public function index()
     {
         return view('profile.products.index', ['products' => Product::all()]);
-    }
+    } 
 
     /**
      * Show the form for creating a new resource.
@@ -29,6 +29,11 @@ class ProductsController extends Controller
     public function create()
     {
         return view('admin.products.create');
+    }
+
+    public function createProfit()
+    {
+        dd(11);
     }
 
     /**

@@ -25,15 +25,13 @@ Route::redirect('/home', '/profile');
 Route::prefix('/admin')->middleware('auth')->middleware('admin')->group(function () {
     Route::redirect('/', 'users/')->name('home');
 
-    //Route::get('/finances', '\App\Http\Controller\Admin\FinancesController@index')->name('finances');
-    //Route::get('/finances', [UsersController::class, 'index'])->name('finances');
-
     Route::resources([
         'users' => \App\Http\Controllers\Admin\UsersController::class,
         'products-admin' => \App\Http\Controllers\ProductsController::class,
         'files' => \App\Http\Controllers\FilesController::class,
         'finances' => \App\Http\Controllers\Admin\FinancesController::class,
     ]);
+    
 
 });
 
@@ -46,7 +44,7 @@ Route::prefix('/profile')->middleware('auth')->group(function () {
         return view('profile.referrals', ['referrals' => \App\Models\User::find(Auth::id())->referrals]);
     })->name('referrals');
 
-    //Route::view('/finances', 'profile.finances')->name('finances');
+    Route::view('/profit/create', 'admin.createprofit')->name('create-profit');
     Route::get('/finances', 'App\Http\Controllers\FinanceController@index')->name('finances');
     Route::post('/finances', 'App\Http\Controllers\FinanceController@post')->name('finances-send');
     Route::post('/deposit', 'App\Http\Controllers\FinanceController@addDeposit')->name('add-deposit');
