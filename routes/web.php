@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controller\Admin\FinancesController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,8 +30,8 @@ Route::prefix('/admin')->middleware('auth')->middleware('admin')->group(function
 
     Route::resources([
         'users' => \App\Http\Controllers\Admin\UsersController::class,
-        'products-admin' => \App\Http\Controllers\ProductsController::class,
-        'files' => \App\Http\Controllers\FilesController::class,
+        'products-admin' => \App\Http\Controllers\Admin\ProductsController::class,
+        'files' => \App\Http\Controllers\Admin\FilesController::class,
         'finances' => \App\Http\Controllers\Admin\FinancesController::class,
     ]);
 

@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\File;
+use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Session\Store;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
-class FilesController extends Controller
+class ProductsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +19,8 @@ class FilesController extends Controller
      */
     public function index()
     {
-        return view('admin.files.index', ['files' => File::all()]);
-    }
+        return view('profile.products.index', ['products' => Product::all()]);
+    } 
 
     /**
      * Show the form for creating a new resource.
@@ -27,7 +29,7 @@ class FilesController extends Controller
      */
     public function create()
     {
-        return view('admin.files.create');
+        return view('admin.products.create');
     }
 
     /**
@@ -38,28 +40,39 @@ class FilesController extends Controller
      */
     public function store(Request $request)
     {
-        // Сохраняем файл
-        $path = $request->file('file')->store('files', 'public');
+        $data = $request->all();
+        $filename = $data['img']->getClientOriginalName();
 
-        File::create([
-            'product_id' => $request->post('product_id'),
-            'name' => $request->post('title'),
-            'path' => $path,
-            'type' => 'file',
+        // Сохраняем оригинальную картинку
+        $path = $request->file('img')->store('offers', 'public');
+//        Storage::setVisibility($path, 'public');
+
+        // Сохраняем новость в БД
+        $data['img'] = $filename;
+
+        Product::create([
+            'image' => $path,
+            'name' => $data['name'],
+            'description' => $data['description'],
+            'full_description' => $data['full_description'],
+            'award' => $data['award'],
+            'need_funds' => $data['need_funds'],
+            'shares' => $data['shares'],
+            'end_date' => $data['end_date'],
         ]);
 
-        return redirect()->route('files.index')->with(['success' => 'Файл успешно добавлен!']);
+        return Redirect::route('products.index');
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        return view('profile.products.show', ['product' => Product::find($id)]);
     }
 
     /**
@@ -70,7 +83,7 @@ class FilesController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.files.edit', compact('id'));
+        //
     }
 
     /**
@@ -82,17 +95,7 @@ class FilesController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-        $file = File::find($id);
-        $old_file = $file['path'];
-
-        // Сохраняем файл
-        $path = $request->file('file')->store('files', 'public');
-        $file->path = $path;
-        Storage::delete('public/' . $old_file);
-        $file->save();
-
-        return Redirect::route('files.index')->with(['success' => 'Файл успешно изменен!']);
+        //
     }
 
     /**
@@ -103,9 +106,6 @@ class FilesController extends Controller
      */
     public function destroy($id)
     {
-        $file = File::find($id);
-        $file->delete();
-        Storage::delete('public/' . $file['path']);
-        return Redirect::route('files.index')->with(['success' => 'Файл успешно удален!']);
+        //
     }
 }
