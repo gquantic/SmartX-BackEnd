@@ -31,6 +31,11 @@ class ProductsController extends Controller
         return view('admin.products.create');
     }
 
+    public function createProfit()
+    {
+        dd(11);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
