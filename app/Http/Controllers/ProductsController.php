@@ -19,7 +19,7 @@ class ProductsController extends Controller
     public function index()
     {
         return view('profile.products.index', ['products' => Product::all()]);
-    } 
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -44,28 +44,28 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-        $filename = $data['img']->getClientOriginalName();
-
-        // Сохраняем оригинальную картинку
-        $path = $request->file('img')->store('offers', 'public');
-//        Storage::setVisibility($path, 'public');
-
-        // Сохраняем новость в БД
-        $data['img'] = $filename;
-
-        Product::create([
-            'image' => $path,
-            'name' => $data['name'],
-            'description' => $data['description'],
-            'full_description' => $data['full_description'],
-            'award' => $data['award'],
-            'need_funds' => $data['need_funds'],
-            'shares' => $data['shares'],
-            'end_date' => $data['end_date'],
-        ]);
-
-        return Redirect::route('products.index');
+//        $data = $request->all();
+//        $filename = $data['img']->getClientOriginalName();
+//
+//        // Сохраняем оригинальную картинку
+//        $path = $request->file('img')->store('offers', 'public');
+////        Storage::setVisibility($path, 'public');
+//
+//        // Сохраняем новость в БД
+//        $data['img'] = $filename;
+//
+//        Product::create([
+//            'image' => $path,
+//            'name' => $data['name'],
+//            'description' => $data['description'],
+//            'full_description' => $data['full_description'],
+//            'award' => $data['award'],
+//            'need_funds' => $data['need_funds'],
+//            'shares' => $data['shares'],
+//            'end_date' => $data['end_date'],
+//        ]);
+//
+//        return Redirect::route('products.index');
     }
 
     /**

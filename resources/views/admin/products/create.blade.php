@@ -7,7 +7,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <form action="{{ route('products.store') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('products-admin.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="col-xl-12">
                     <div class="card">

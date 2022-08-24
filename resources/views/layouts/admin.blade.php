@@ -91,7 +91,7 @@
 
                     <li><a href="{{ route('referrals') }}"><i class="zmdi zmdi-accounts"></i><span>Рефералы</span></a></li>
 
-                    <li><a href="{{ route('finances') }}"><i class="zmdi zmdi-balance-wallet"></i><span>Финансы</span></a></li>
+                    <li><a href="{{ route('finances-admin.index') }}"><i class="zmdi zmdi-balance-wallet"></i><span>Финансы</span></a></li>
 
                     <!--li><a href="documentation"><i class="zmdi zmdi-book"></i><span>Полезная информация</span></a></li-->
 

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 class FinanceController extends Controller
 {
 
-    
+
     public function index()
     {
         $transactions = Transaction::where('user_id', Auth::user()->id)->get();
@@ -53,7 +53,7 @@ class FinanceController extends Controller
         $transaction->communication_method = $validated['communication_method'];
         $transaction->communication_contact = $validated['communication_contact'];
         $transaction->status = 'NEW';
-        
+
         $transaction->save();
         return Redirect::route('finances')->with(['success' => 'Заявка отправлена!']);
     }
