@@ -3,12 +3,6 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            @if(\Illuminate\Support\Facades\Auth::user()->is_admin)
-                <div class="col-md-12 d-flex justify-content-start mb-3">
-                    <a href="{{ route('products.create') }}" class="btn btn-primary">Добавить продукт</a>
-                </div>
-            @endif
-
             @foreach($products as $product)
                 <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
                     <div class="card">

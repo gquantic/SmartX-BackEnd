@@ -32,6 +32,10 @@ Route::prefix('/admin')->middleware('auth')->middleware('admin')->group(function
         'finances-admin' => \App\Http\Controllers\Admin\FinancesController::class,
     ]);
 
+    Route::get('/profit/create/{id}', 'App\Http\Controllers\Admin\ProfitController@create')->name('profit-create');
+    Route::post('/profit', 'App\Http\Controllers\Admin\ProfitController@store')->name('profit-store');
+
+
 
 });
 

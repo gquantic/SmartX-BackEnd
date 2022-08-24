@@ -3,7 +3,6 @@
 @section('content')
 
     <div class="container-fluid">
-        <a href="{{ route('create-profit') }}"><button class="btn btn-primary mb-3">Новая прибыль</button></a>
         <div class="row clearfix">
             @if($errors->any())
                 <div class="row mb-2">
@@ -23,7 +22,7 @@
                         </div>
                     </div>
                 @endif
-                
+
             <div class="col-lg-12">
                 <div class="card">
                     <div class="body">

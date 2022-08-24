@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('page-title')
-    Пользователи
+    Финансы
 @endsection
 
 @section('content')
@@ -58,7 +58,14 @@
                             <td>{{ $transaction['communication_contact'] }}</td>
                             <td>{{ $transaction['status'] }}</td>
                             <td>{{ $transaction['created_at'] }}</td>
-                            <td><a href="{{ route('finances-admin.edit', $id) }}"><button class="btn btn-primary">Изменить</button></a></td>
+                            @if ($transaction['status'] != 'Отклонён')
+                                <td><a href="{{ route('finances-admin.edit', $id) }}"><button class="btn btn-primary">Изменить</button></a></td>
+                            @else
+                                <td></td>
+                            @endif
+
+
+
 
                         </tr>
                     @endforeach

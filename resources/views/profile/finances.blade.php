@@ -16,7 +16,7 @@
                 $investedAmount += $price;
             }
     @endphp
-           
+
     <div class="container-fluid">
         @if($errors->any())
             <div class="row mt-2">
@@ -32,6 +32,15 @@
                 <div class="col-md-12">
                     <div class="alert alert-success">
                         {!! \Session::get('success') !!}
+                    </div>
+                </div>
+            </div>
+        @endif
+            @if(\Session::has('info'))
+            <div class="row mb-1">
+                <div class="col-md-12">
+                    <div class="alert alert-info">
+                        {!! \Session::get('info') !!}
                     </div>
                 </div>
             </div>
@@ -102,16 +111,16 @@
                                       </select>
                                       <span class="text-muted">По данному контакту с вами свяжется менеджер.</span>
                                 </div>
-                                
+
                                 <div class="col">
                                     <label for="">Контакт</label>
                                     <input type="text" name="communication_contact" class="form-control">
                                 </div>
                               </div>
-                            
-                            
+
+
                             <input type="submit" class="btn btn-primary mt-3" value="Оставить заявку">
-                        </form>   
+                        </form>
                     </div>
                 </div>
             </div>
@@ -152,6 +161,6 @@
                 </div>
             </div>
         </div>
- 
+
     </div>
 @endsection

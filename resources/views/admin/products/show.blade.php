@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="container-fluid">
-        <a href="{{ route('create-profit') }}"><button class="btn btn-primary mb-3">Новая прибыль</button></a>
+        <a href="{{ route('profit-create', $product->id) }}"><button class="btn btn-primary mb-3">Новая прибыль</button></a>
         <div class="row clearfix">
             @if($errors->any())
                 <div class="row mb-2">
