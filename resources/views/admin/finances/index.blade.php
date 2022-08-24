@@ -58,8 +58,8 @@
                             <td>{{ $transaction['communication_contact'] }}</td>
                             <td>{{ $transaction['status'] }}</td>
                             <td>{{ $transaction['created_at'] }}</td>
-                            <td><a href="{{ route('finances.edit', $id) }}"><button class="btn btn-primary">Изменить</button></a></td>
-                            
+                            <td><a href="{{ route('finances-admin.edit', $id) }}"><button class="btn btn-primary">Изменить</button></a></td>
+
                         </tr>
                     @endforeach
                     </tbody>

@@ -38,7 +38,7 @@
                             <td>{{ $item['communication_contact'] }}</td>
                             {{-- <td>{{ $item['status'] }}</td> --}}
                             <td>
-                                <form id="update" action="{{ route('finances.update', $item['id']) }}" method="post">
+                                <form id="update" action="{{ route('finances-admin.update', $item['id']) }}" method="post">
                                     @csrf
                                     @method('patch')
                                     <select class="w-100" name="edit_status" aria-label="Default select example">
@@ -49,11 +49,11 @@
                                         <option value="Отклонён">Отклонён</option>
                                       </select>
                                 </form>
-                                
+
                             </td>
                             <td>{{ $item['created_at'] }}</td>
                             <td><button class="btn btn-primary" type="submit" form="update">Сохранить</button></td>
-                            
+
                         </tr>
                     @endforeach
                     </tbody>
